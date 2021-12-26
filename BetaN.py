@@ -41,3 +41,32 @@ def subsets(data):
             ans.extend(all_subset_arr(p[1:],up))
             return ans
     return all_subset_arr(data) if type(data)==list else all_subset_str(data)
+
+#factorial function will take 1 input 'n' as a non zero positive integer
+#and will return factorial of that number
+#ex if n=5 will return 120 as 5*4*3*2*1
+def factorial(n):
+    ans=1
+    for i in range(1,n+1): ans*=i
+    return ans
+
+#fib_at_n function will take 1 input "n" as n>=0 and will return 
+# fibonacci number at n'th position
+# ex n=9 will return 34 
+def fib_at_n(n):
+    fib1,fib2=0,1
+    for i in range(n-1):
+        fib3=fib1+fib2
+        fib1,fib2=fib2,fib3
+    return fib3
+
+
+    
+#fib_up_to_n function will take 1 input 'n' as n>=0 will return 
+# a list contaning all fibonacci number up to n
+# ex n= 10 will return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+def fib_up_to_n(n):
+    fib=[0,1]
+    for i in range(2,n+1):
+        fib.append(fib[i-1]+fib[i-2])
+    return fib
