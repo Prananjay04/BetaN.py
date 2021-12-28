@@ -61,7 +61,7 @@ def fib_at_n(n):
     return fib3
 
 
-    
+
 #fib_up_to_n function will take 1 input 'n' as n>=0 will return 
 # a list contaning all fibonacci number up to n
 # ex n= 10 will return [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
@@ -70,3 +70,44 @@ def fib_up_to_n(n):
     for i in range(2,n+1):
         fib.append(fib[i-1]+fib[i-2])
     return fib
+
+
+def primes_upto_n(n):
+    primes=[True]*(n+1)
+    prime_nums=[]
+    for i in range(2,n+1):
+        if not primes[i] : continue
+        for j in range(i*i,n+1,i): primes[j]=False
+        prime_nums.append(i)
+    return prime_nums
+
+
+def p_and_c(data):
+    if type(data) not in (list,str): raise TypeError("Only List and String Supported")
+    def p_c_string(p,un=""):
+        if p=="":
+            return [un]
+        p_c_arr=[]
+        curr=p[0]
+        for i in range(len(un)+1):
+            newstring=un[:i]+curr+un[i:]
+            p_c_arr.extend(p_c_string(p[1:],newstring))
+        return p_c_arr
+    def p_c_arr(p,un=[]):
+        if p==[]:
+            return [un]
+        pcarr=[]
+        curr=p[0]
+        for i in range(len(un)+1):
+            newarr=un[:i]+[curr]+un[i:]
+            pcarr.extend(p_c_arr(p[1:],newarr))
+        return pcarr
+    return p_c_arr(data) if type(data)==list else p_c_string(data)
+
+def diagonal_2d(mat):
+    dl,dr=[],[]
+    c=len(mat[0])-1
+    for i in range(len(mat)):
+        dl.append(mat[i][i])
+        dr.append(mat[c-i][i])
+    return dl,dr
